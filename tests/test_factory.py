@@ -59,3 +59,22 @@ def test_factory_abs_diff_invalid_operand_count():
     """verifies that abs_diff fails if not provided exactly 2 operands"""
     with pytest.raises(ValueError, match=r"abs_diff requires exactly 2 value\(s\)\."):
         CalculationFactory.create('abs_diff', 3)
+
+"""part 3 independent tests for divide_by_factor"""
+def test_divde_by_factor_success():
+    """verifies unary operation works with both custom and defult factor"""
+    calc_custom = CalculationFactory.create('divide_by_factor', 10, factor=2)
+    assert calc_custom.get_result() == 5
+    calc_default = CalculationFactory.create('divide_by_factor', 10)
+    assert calc_default.get_result() == 10
+
+def test_divide_by_factor_option_faliure():
+    """verfies that unsupported options raise ValueError during factory creation"""
+    with pytest.raises(ValueError, match=r"Unsupported option for divide_by_factor:"):
+        CalculationFactory.create('divide_by_factor', 10, invalid_option=5)
+
+def test_divide_by_factor_domain_failure():
+    """verifies that factor=0 passes creation but deffers a ZeroDivisionError to get_result()."""
+    calc = CalculationFactory.create('divide_by_factor', 10, factor=0)
+    with pytest.raises(ZeroDivisionError, match="Factor cannot be zero"):
+        calc.get_result()
