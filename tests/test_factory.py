@@ -43,3 +43,19 @@ def test_argument_counts_and_named_options(name, values, options, expected):
 def test_reject_invalid_argument_contract(name, values, options):
     with pytest.raises(ValueError):
         CalculationFactory.create(name, *values, **options)
+
+"""added 3 below tests to complete independent problem as part of part 2"""
+def test_factory_abs_diff_operaton():
+    """verifies abs_diff constructs through factory and calculates absolute difference."""
+    calc = CalculationFactory.create('abs_diff', 3, 9)
+    assert calc.get_result() == 6
+
+def test_factory_abs_diff_normalization():
+    """verifies that name normalization works for abs_diff with mix casing and padding"""
+    calc = CalculationFactory.create(' AbS_dIfF ', 3, 9)
+    assert calc.get_result() == 6
+
+def test_factory_abs_diff_invalid_operand_count():
+    """verifies that abs_diff fails if not provided exactly 2 operands"""
+    with pytest.raises(ValueError, match=r"abs_diff requires exactly 2 value\(s\)\."):
+        CalculationFactory.create('abs_diff', 3)

@@ -16,10 +16,12 @@ class CalculationFactory:
         "sum": Operations.sum,
         "mean": Operations.mean,
         "stddev": Operations.stddev,
+        "abs_diff": Operations.abs_diff #added to complete the independent problem in part 2
     }
     operand_counts = {
         "add": 2, "subtract": 2, "multiply": 2, "divide": 2,
         "square": 1, "sqrt": 1, "power": 1,
+        "abs_diff": 2, #added to complete the independent problem in part 2
     }
     allowed_options = {"power": {"exponent"}, "stddev": {"ddof"}}
 
