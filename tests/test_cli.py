@@ -24,7 +24,8 @@ def test_recovers_after_invalid_input(monkeypatch, capsys):
     assert 'Result: 5.0000' in output
 
 
-@pytest.mark.parametrize('text', ['', 'history 1', 'clear 1', 'help 1', 'csv', 'csv add values.csv'])
+@pytest.mark.parametrize('text', ['', 'history 1', 'clear 1', 'help 1', 'csv', 'count 1', 'csv add values.csv'])
+# added count 1 to for part 4
 
 def test_reject_invalid_syntax(text):
     with pytest.raises(ValueError):
@@ -73,3 +74,14 @@ def test_unary_and_options_session(monkeypatch, capsys):
     assert "Result: 81.0000" in output
     assert output.count("Error:") == 2
     assert "power 3.0 exponent=4.0 = 81.0000" in output
+
+# appended the counter test as part of part 4
+def test_count_cli_session(monkeypatch, capsys):
+    answers = iter(['count', 'add 2 3', 'count', 'divide 1 0', 'count', 'exit'])
+    monkeypatch.setattr('builtins.input', lambda prompt: next(answers))
+    run()
+    output = capsys.readouterr().out
+    assert 'Saved calculations: 0' in output
+    assert 'Saved calculations: 1' in output
+    assert 'Error:' in output
+

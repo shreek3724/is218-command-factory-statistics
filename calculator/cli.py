@@ -1,6 +1,6 @@
 """CLI prepares requests, invokes commands, and recovers from expected failures."""
 import pandas as pd
-from calculator.commands import CalculateCommand, ClearHistoryCommand, HelpCommand, HistoryCommand
+from calculator.commands import CalculateCommand, ClearHistoryCommand, CountCommand, HelpCommand, HistoryCommand
 from calculator.factory import CalculationFactory
 from calculator.inputs import read_csv_values
 from calculator.session import CalculatorSession
@@ -12,7 +12,7 @@ def prepare_command(text, session):
         raise ValueError("Enter a command; use help for examples.")
     name, *arguments = parts
     name = name.lower()
-    actions = {"history": HistoryCommand, "clear": ClearHistoryCommand}
+    actions = {"history": HistoryCommand, "clear": ClearHistoryCommand, "count": CountCommand} #added CountCommand to actions dict as part of step 4
     if name in actions:
         if arguments:
             raise ValueError(f"{name} does not accept values.")
