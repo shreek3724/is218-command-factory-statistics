@@ -5,3 +5,10 @@ __pycache__/
 grade-results.json
 grade-summary.md
 submission-work/
+.venv/
+venv/
+env/
+ENV/
+__pycache__/
+*.pycvenv/
+.venv/
