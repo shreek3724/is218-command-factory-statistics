@@ -1,4 +1,8 @@
-# Extend your OOP calculator: a six-part textbook
+# IS218 Design Patterns Stats Calculator - HW SUBMISSION
+This repo is a branched one from the refrenced, and is developed and worked on throughout the stages to complete all facets of the stats calculator.
+This included mainly developing files and code to complete the completion criteria and independent tasks/test sections.
+
+## Extend your OOP calculator: a six-part textbook
 
 You have completed the [OOP calculator course](https://github.com/kaw393939/is218-oop-calculator): objects, an abstract calculation contract, encapsulated history, a CLI, tests, and CI. This sequel builds on that application to teach static operations, composition, a calculation factory, flexible inputs, application commands, and pandas data sources.
 
