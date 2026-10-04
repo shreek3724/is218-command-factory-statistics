@@ -12,7 +12,7 @@ class History:
         self._entries.append((calculation, result))
 
     def get_history(self):
-        # A new list protects membership; the Calculation objects remain shared.
+        # A new list copy protects membership; the Calculation objects remain shared.
         return self._entries.copy()
 
     def clear(self) -> None:

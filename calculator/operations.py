@@ -46,3 +46,9 @@ class Operations:
     @staticmethod
     def stddev(*values, ddof=1) -> float:
         return standard_deviation(values, ddof=ddof)
+
+    """added as part of independent part of assignment"""
+    @staticmethod
+    def abs_diff(a, b) -> float:
+        """Calculates the absolute difference between two numbers."""
+        return abs(a - b)
