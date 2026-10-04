@@ -47,3 +47,11 @@ class ClearHistoryCommand(Command):
 class HelpCommand(Command):
     def execute(self) -> str:
         return HELP
+
+# new part added for independent problem in part 4
+class CountCommand(Command):
+    def __init__(self, session):
+        self.session = session
+
+    def execute(self) -> str:
+        return f"Saved calculations: {self.session.count()}"

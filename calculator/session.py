@@ -16,3 +16,8 @@ class CalculatorSession:
 
     def clear(self) -> None:
         self._history.clear()
+
+    # indepdent problem addition made for part 4
+    def count(self) -> int:
+        """returns the total number of saved successful calculations"""
+        return len(self.get_history())

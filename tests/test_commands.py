@@ -1,5 +1,5 @@
 import pytest
-from calculator.commands import Command, CalculateCommand, HistoryCommand, ClearHistoryCommand, HelpCommand
+from calculator.commands import Command, CalculateCommand, HistoryCommand, ClearHistoryCommand, HelpCommand, CountCommand
 from calculator.factory import CalculationFactory
 from calculator.session import CalculatorSession
 
@@ -33,3 +33,20 @@ def test_failure_is_not_recorded():
 
 def test_help_has_no_session_dependency():
     assert 'history' in HelpCommand().execute()
+
+# added new tests for CountCommand for part 4
+def test_count_command_and_faliure_isolation():
+    session = CalculatorSession()
+    count_cmd = CountCommand(session)
+    assert count_cmd.execute() == 'Saved calculations: 0'
+
+    #successful calculation increments count
+    calc = CalculationFactory.create('add', 2,3)
+    CalculateCommand(session, calc).execute()
+    assert count_cmd.execute() == 'Saved calculations: 1'
+
+    #failed calculation does not increment count
+    bad_calc = CalculationFactory.create('divide', 1, 0)
+    with pytest.raises(ZeroDivisionError):
+        CalculateCommand(session, bad_calc).execute()
+    assert count_cmd.execute() == 'Saved calculations: 1'
